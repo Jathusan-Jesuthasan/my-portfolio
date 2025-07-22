@@ -1,0 +1,110 @@
+import React from "react";
+import { BadgeCheck, Award } from "lucide-react";
+import { motion } from "framer-motion";
+
+const certifications = [
+  {
+    title: "Agile and Scrum (Professional Diploma)",
+    issuer: "Udemy",
+    year: "2024",
+    link: "#",
+  },
+  {
+    title: "Foundations of Prompt Engineering",
+    issuer: "AWS",
+    year: "2025",
+    link: "#",
+  },
+  {
+    title: "Web Design for Beginners",
+    issuer: "University of Moratuwa",
+    year: "2023",
+    link: "#",
+  },
+  {
+    title: "Build a Free Website with WordPress",
+    issuer: "Coursera",
+    year: "2023",
+    link: "#",
+  },
+  {
+    title: "Basic Digital Marketing",
+    issuer: "Alison",
+    year: "2022",
+    link: "#",
+  },
+];
+
+const Certifications = () => {
+  return (
+    <section id="certifications" className="py-16 px-4 sm:px-8 lg:px-20 bg-gray-950 text-white">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-3xl sm:text-4xl font-bold mb-12 text-center"
+        >
+          <span className="text-indigo-400">My</span> Certifications
+        </motion.h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {certifications.map((cert, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-indigo-400 transition-all hover:shadow-lg hover:shadow-indigo-500/10"
+            >
+              <div className="flex flex-col h-full">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="bg-indigo-500/20 p-2 rounded-lg">
+                    <BadgeCheck className="text-indigo-400" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">{cert.title}</h3>
+                    <p className="text-gray-400 text-sm">
+                      {cert.issuer} • {cert.year}
+                    </p>
+                  </div>
+                </div>
+                
+                {cert.link && (
+                  <div className="mt-auto">
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm text-indigo-400 hover:text-indigo-300 hover:underline transition"
+                    >
+                      View Certificate
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 ml-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Certifications;
