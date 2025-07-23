@@ -115,23 +115,28 @@ export default function About() {
                   <div className="space-y-4 text-sm font-mono text-gray-700 dark:text-gray-300">
                     <p><span className="text-purple-600 dark:text-purple-400">const</span> <span className="text-indigo-600 dark:text-indigo-400">skills</span> = [</p>
                     <div className="ml-4 space-y-1">
-                      <p><span className="text-emerald-600 dark:text-emerald-400">'Full-stack Development'</span>,</p>
-                      <p><span className="text-emerald-600 dark:text-emerald-400">'UI/UX Design'</span>,</p>
-                      <p><span className="text-emerald-600 dark:text-emerald-400">'Cloud Architecture'</span>,</p>
-                      <p><span className="text-emerald-600 dark:text-emerald-400">'Technical Writing'</span></p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'JavaScript'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'Python'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'C++'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'Java'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'PHP'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'Kotlin'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'React.js'</span>,</p>
+                      <p><span className="text-emerald-600 dark:text-emerald-400">'Tailwind CSS'</span></p>
                     </div>
                     <p>];</p>
                     <p><span className="text-purple-600 dark:text-purple-400">let</span> <span className="text-indigo-600 dark:text-indigo-400">education</span> = &#123;</p>
                     <div className="ml-4 space-y-1">
-                      <p><span className="text-amber-600 dark:text-amber-400">degree</span>: <span className="text-emerald-600 dark:text-emerald-400">'BSc Software Engineering'</span>,</p>
-                      <p><span className="text-amber-600 dark:text-amber-400">institution</span>: <span className="text-emerald-600 dark:text-emerald-400">'SLIIT'</span>,</p>
-                      <p><span className="text-amber-600 dark:text-amber-400">status</span>: <span className="text-emerald-600 dark:text-emerald-400">'3rd Year'</span></p>
+                      <p><span className="text-amber-600 dark:text-amber-400">degree</span>: <span className="text-emerald-600 dark:text-emerald-400">'BSc (Hons) in Information Technology (Software Engineering)'</span>,</p>
+                      <p><span className="text-amber-600 dark:text-amber-400">institution</span>: <span className="text-emerald-600 dark:text-emerald-400">'SLIIT, Malabe Campus'</span>,</p>
+                      <p><span className="text-amber-600 dark:text-amber-400">status</span>: <span className="text-emerald-600 dark:text-emerald-400">'3rd Year - Semester 1'</span></p>
                     </div>
                     <p>&#125;;</p>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </motion.div>
 

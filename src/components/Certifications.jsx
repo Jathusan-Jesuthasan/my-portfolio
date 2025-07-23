@@ -7,31 +7,37 @@ const certifications = [
     title: "Agile and Scrum (Professional Diploma)",
     issuer: "Udemy",
     year: "2024",
-    link: "#",
+    link: "https://www.udemy.com/certificate/UC-0ffd1a78-b4f9-466e-83ce-e64356fb3c5a/",
   },
   {
     title: "Foundations of Prompt Engineering",
-    issuer: "AWS",
+    issuer: "AWS Skill Builder",
     year: "2025",
-    link: "#",
+    link: "https://skillbuilder.aws/learn/VF6H4SZ1BU/foundations-of-prompt-engineering/7U8XFUVXDT",
   },
   {
     title: "Web Design for Beginners",
     issuer: "University of Moratuwa",
     year: "2023",
-    link: "#",
+    link: "https://open.uom.lk/lms/mod/customcert/verify_certificate.php?code=TzFhz3pKba",
   },
   {
     title: "Build a Free Website with WordPress",
     issuer: "Coursera",
     year: "2023",
-    link: "#",
+    link: "https://www.coursera.org/account/accomplishments/verify/MV6WA2TE1Q5J",
   },
   {
     title: "Basic Digital Marketing",
     issuer: "Alison",
     year: "2022",
-    link: "#",
+    link: "https://alison.com/certification/check/a4b662ce6f",
+  },
+  {
+    title: "Skill Certification Badge",
+    issuer: "Badgr",
+    year: "2024",
+    link: "https://badgr.com/public/assertions/M5h-DyMWTiqsj2l-Tohm5w",
   },
 ];
 
