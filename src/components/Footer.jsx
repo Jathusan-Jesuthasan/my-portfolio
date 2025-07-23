@@ -1,18 +1,24 @@
 import React from "react";
 import { FaLinkedin, FaGithub, FaTwitter, FaWhatsapp, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 import { motion } from "framer-motion";
 
 export default function Footer() {
   const socialLinks = [
     {
       icon: <FaLinkedin />,
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/",
       label: "LinkedIn"
     },
     {
       icon: <FaGithub />,
-      url: "https://github.com/yourprofile",
+      url: "https://github.com/Jathusan-Jesuthasan",
       label: "GitHub"
+    },
+    {
+      icon: <SiLeetcode />,
+      url: "https://leetcode.com/u/7nNdDsZvgo/",
+      label: "LeetCode"
     },
     {
       icon: <FaTwitter />,
