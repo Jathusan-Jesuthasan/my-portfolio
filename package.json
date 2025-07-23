@@ -3,13 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://jathusan-jesuthasan.github.io/my-portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "build:analyze": "vite build --mode analyze",
     "lint": "eslint .",
     "preview": "vite preview",
-    "analyze": "npx vite-bundle-analyzer dist"
+    "analyze": "npx vite-bundle-analyzer dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
