@@ -5,6 +5,9 @@ export default defineConfig({
   plugins: [react()],
   base: '/my-portfolio/',
   build: {
+    // GitHub Pages optimizations
+    outDir: 'dist',
+    assetsDir: 'assets',
     // Performance optimizations
     rollupOptions: {
       output: {

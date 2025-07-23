@@ -7,12 +7,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:gh-pages": "vite build --base=/my-portfolio/",
     "build:analyze": "vite build --mode analyze",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:gh-pages": "vite preview --base=/my-portfolio/",
     "analyze": "npx vite-bundle-analyzer dist",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build:gh-pages",
+    "deploy": "gh-pages -d dist -f",
+    "deploy:clean": "gh-pages-clean && npm run deploy"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

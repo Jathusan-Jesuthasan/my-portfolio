@@ -15,6 +15,9 @@ dist
 dist-ssr
 *.local
 
+# GitHub Pages - Don't ignore dist when deploying manually
+# dist
+
 # Environment files
 .env
 .env.local
