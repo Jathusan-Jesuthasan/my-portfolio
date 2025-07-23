@@ -1,5 +1,5 @@
 import React from "react";
-import { Linkedin, Github, Download, Code } from 'lucide-react';
+import { FaLinkedin, FaGithub, FaDownload, FaCode } from 'react-icons/fa';
 import { motion } from "framer-motion";
 import Education from "./Education";
 import Languages from "./Languages";
@@ -78,7 +78,7 @@ export default function About() {
                   whileTap={{ scale: 0.98 }}
                   className="flex items-center gap-2 px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition shadow-lg hover:shadow-purple-500/20 text-white"
                 >
-                  <Linkedin size={18} />
+                  <FaLinkedin size={18} />
                   <span>Connect on LinkedIn</span>
                 </motion.a>
 
@@ -89,7 +89,7 @@ export default function About() {
                   whileTap={{ scale: 0.98 }}
                   className="flex items-center gap-2 px-5 py-3 border border-gray-300 dark:border-gray-700 hover:border-indigo-400 text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition"
                 >
-                  <Download size={16} />
+                  <FaDownload size={16} />
                   <span>Download CV</span>
                 </motion.a>
               </div>
@@ -108,7 +108,7 @@ export default function About() {
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="bg-purple-100 dark:bg-purple-900/50 p-2 rounded-lg">
-                      <Code className="text-purple-600 dark:text-purple-400" size={20} />
+                      <FaCode className="text-purple-600 dark:text-purple-400" size={20} />
                     </div>
                     <h3 className="text-xl font-semibold">Technical Profile</h3>
                   </div>

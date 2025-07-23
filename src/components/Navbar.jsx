@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
@@ -72,13 +72,14 @@ const Navbar = () => {
             </ul>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="ml-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              className="ml-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
               id="theme-toggle"
             >
               {isDarkMode ? (
-                <SunIcon className="h-5 w-5 text-yellow-500" />
+                <FiSun className="h-5 w-5 text-yellow-500" />
               ) : (
-                <MoonIcon className="h-5 w-5 text-gray-800" />
+                <FiMoon className="h-5 w-5 text-gray-800" />
               )}
             </button>
           </div>
@@ -88,9 +89,10 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
               id="mobile-menu-toggle"
             >
               <svg
@@ -169,9 +171,9 @@ const Navbar = () => {
                   className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
                   {isDarkMode ? (
-                    <SunIcon className="h-5 w-5 text-yellow-500" />
+                    <FiSun className="h-5 w-5 text-yellow-500" />
                   ) : (
-                    <MoonIcon className="h-5 w-5 text-gray-800" />
+                    <FiMoon className="h-5 w-5 text-gray-800" />
                   )}
                 </button>
               </div>

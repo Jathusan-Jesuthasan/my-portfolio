@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Globe } from "lucide-react";
+import { FaGlobe } from "react-icons/fa";
 
 export default function Languages() {
   const languages = [
@@ -37,7 +37,7 @@ export default function Languages() {
     >
       <div className="flex items-center gap-4 mb-8">
         <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-xl">
-          <Globe
+          <FaGlobe
             className="text-purple-600 dark:text-purple-400"
             size={24}
             aria-hidden="true"

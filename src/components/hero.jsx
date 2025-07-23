@@ -44,7 +44,7 @@ export default function Hero() {
 
           <div className="max-w-xl">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Passionate Software Engineering undergraduate at SLIIT crafting exceptional digital experiences through modern web technologies and clean code practices.
+              3rd Year Software Engineering undergraduate at SLIIT, passionate about crafting exceptional digital experiences through modern web technologies and clean code practices.
             </p>
           </div>
 
@@ -84,10 +84,14 @@ export default function Hero() {
         >
           <div className="relative">
             <img
-              loading="lazy"
               src={profilePic}
-              alt="Jathusan Jesuthasan"
+              alt="Jathusan Jesuthasan - Software Engineering Student at SLIIT"
               className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-indigo-400/30 object-cover shadow-2xl z-10 relative"
+              width="320"
+              height="320"
+              decoding="async"
+              loading="eager"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-purple-500 to-purple-700 blur-md z-0 -m-1 animate-spin-slow"></div>
             <div className="absolute -inset-4 rounded-full border-4 border-purple-500/10 z-0 animate-ping-slow"></div>

@@ -1,5 +1,12 @@
 import React from "react";
-import { FaLinkedin, FaGithub, FaTwitter, FaWhatsapp, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaWhatsapp,
+  FaEnvelope,
+  FaArrowUp
+} from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import { motion } from "framer-motion";
 
@@ -43,7 +50,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Copyright */}
           <div className="text-sm">
-            &copy; {new Date().getFullYear()} <span className="text-white">Jathusan Jesuthasan</span>. All rights reserved.
+            &copy; {new Date().getFullYear()}{" "}
+            <a
+              href="https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-indigo-400 transition-colors"
+            >
+              Jathusan Jesuthasan
+            </a>
+            . All rights reserved.
           </div>
 
           {/* Social Links */}
@@ -55,7 +71,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                whileHover={{ y: -3, color: "#818CF8" }} // indigo-400
+                whileHover={{ y: -3 }}
                 transition={{ type: "spring", stiffness: 300 }}
                 className="text-xl text-gray-400 hover:text-indigo-400 transition-colors"
               >
@@ -72,16 +88,21 @@ export default function Footer() {
             transition={{ type: "spring", stiffness: 300 }}
             className="flex items-center gap-2 text-sm group"
           >
-            <span className="group-hover:text-indigo-400 transition-colors">Back to top</span>
+            <span className="group-hover:text-indigo-400 transition-colors">
+              Back to top
+            </span>
             <span className="bg-indigo-500/20 p-2 rounded-lg group-hover:bg-indigo-500/30 transition">
               <FaArrowUp className="text-indigo-400" />
             </span>
           </motion.a>
         </div>
 
-        {/* Optional: Footer note */}
+        {/* Footer note */}
         <div className="mt-8 text-center text-xs text-gray-500">
-          Built with React and Tailwind CSS. Designed with care in Sri Lanka.
+          Built with React & Tailwind CSS in Sri Lanka. <br />
+          <span className="italic text-gray-400">
+            “Dream it. Code it. Ship it.”
+          </span>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import React from "react";
-import { BadgeCheck, Award } from "lucide-react";
+import { FaCertificate, FaAward } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const certifications = [
@@ -62,7 +62,7 @@ const Certifications = () => {
               <div className="flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="bg-indigo-500/20 p-2 rounded-lg">
-                    <BadgeCheck className="text-indigo-400" size={24} />
+                    <FaCertificate className="text-indigo-400" size={24} />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white">{cert.title}</h3>

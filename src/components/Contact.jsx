@@ -183,7 +183,7 @@ Sent via your portfolio contact form`;
               </h3>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                I'm passionate about creating innovative solutions and building meaningful digital experiences. 
+                I'm a 3rd year Software Engineering student at SLIIT, passionate about creating innovative solutions and building meaningful digital experiences. 
                 Whether you have a project in mind or just want to connect, I'd love to hear from you.
               </p>
 
