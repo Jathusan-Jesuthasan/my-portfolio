@@ -26,11 +26,11 @@ export default function About() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 mb-4">
+            <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-4">
               About Me
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Crafting Digital Experiences <span className="text-indigo-600 dark:text-indigo-400">With Precision</span>
+              Crafting Digital Experiences <span className="text-purple-600 dark:text-purple-400">With Precision</span>
             </h2>
             <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
               Software engineer blending technical expertise with creative problem-solving
@@ -62,7 +62,7 @@ export default function About() {
                     whileHover={{ y: -5 }}
                     className="bg-white dark:bg-gray-900 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm text-center"
                   >
-                    <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{stat.value}</div>
+                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
                   </motion.div>
                 ))}
@@ -71,12 +71,12 @@ export default function About() {
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4 pt-4">
                 <motion.a
-                  href="https://www.linkedin.com/in/jathusan-jesuthasan/"
+                  href="https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition shadow-lg hover:shadow-indigo-500/20 text-white"
+                  className="flex items-center gap-2 px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition shadow-lg hover:shadow-purple-500/20 text-white"
                 >
                   <Linkedin size={18} />
                   <span>Connect on LinkedIn</span>
@@ -97,7 +97,7 @@ export default function About() {
 
             {/* Right Column - Tech Card */}
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
               <div className="relative h-full bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-lg">
                 <div className="p-1 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -107,8 +107,8 @@ export default function About() {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="bg-indigo-100 dark:bg-indigo-900/50 p-2 rounded-lg">
-                      <Code className="text-indigo-600 dark:text-indigo-400" size={20} />
+                    <div className="bg-purple-100 dark:bg-purple-900/50 p-2 rounded-lg">
+                      <Code className="text-purple-600 dark:text-purple-400" size={20} />
                     </div>
                     <h3 className="text-xl font-semibold">Technical Profile</h3>
                   </div>
