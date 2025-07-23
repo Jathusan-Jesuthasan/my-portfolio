@@ -1,8 +1,16 @@
 import React from 'react';
 import profilePic from '../assets/profile.jpg';
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 import { FiChevronDown } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+
+const socialLinks = [
+  { icon: FaLinkedin, url: "https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/", label: "LinkedIn" },
+  { icon: FaGithub, url: "https://github.com/Jathusan-Jesuthasan", label: "GitHub" },
+  { icon: SiLeetcode, url: "https://leetcode.com/u/7nNdDsZvgo/", label: "LeetCode" },
+  { icon: FaTwitter, url: "https://twitter.com/yourprofile", label: "Twitter" },
+];
 
 export default function Hero() {
   return (
@@ -25,10 +33,13 @@ export default function Hero() {
           className="flex-1 space-y-8"
         >
           <div className="space-y-4">
-            <p className="text-lg md:text-xl font-medium text-indigo-400">Hello, I'm</p>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Jathusan <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Jesuthasan</span>
-            </h1>
+            <p className="text-lg md:text-xl font-medium text-purple-400">Hello, I'm</p>
+           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+             Jathusan <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">Jesuthasan</span>
+           </h1>
+
+
+
           </div>
 
           <div className="max-w-xl">
@@ -39,7 +50,8 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
             <motion.a
-              whileHover={{ scale: 1.05 }}
+              aria-label="Contact me"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(147, 51, 234, 0.5)" }}
               whileTap={{ scale: 0.95 }}
               href="#contact"
               className="px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg font-semibold text-lg shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
@@ -48,15 +60,18 @@ export default function Hero() {
             </motion.a>
 
             <div className="flex items-center gap-6">
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-300 hover:text-indigo-400 text-2xl transition-colors">
-                <FaLinkedin />
-              </a>
-              <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-300 hover:text-indigo-400 text-2xl transition-colors">
-                <FaGithub />
-              </a>
-              <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-300 hover:text-indigo-400 text-2xl transition-colors">
-                <FaTwitter />
-              </a>
+              {socialLinks.map(({ icon: Icon, url, label }, idx) => (
+                <a
+                  key={idx}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-gray-300 hover:text-indigo-400 text-2xl transition-colors"
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -69,12 +84,13 @@ export default function Hero() {
         >
           <div className="relative">
             <img
+              loading="lazy"
               src={profilePic}
               alt="Jathusan Jesuthasan"
-              className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-indigo-400/30 object-cover shadow-2xl z-10 relative"
+              className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-indigo-400/30 object-cover shadow-2xl z-10 relative"
             />
-            <div className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-indigo-500 to-purple-600 blur-md z-0 -m-1 animate-spin-slow"></div>
-            <div className="absolute -inset-4 rounded-full border-4 border-indigo-500/10 z-0 animate-ping-slow"></div>
+            <div className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-purple-500 to-purple-700 blur-md z-0 -m-1 animate-spin-slow"></div>
+            <div className="absolute -inset-4 rounded-full border-4 border-purple-500/10 z-0 animate-ping-slow"></div>
           </div>
         </motion.div>
       </div>
@@ -89,6 +105,30 @@ export default function Hero() {
       >
         <FiChevronDown />
       </motion.a>
+
+      <style>
+        {`
+          .text-shadow {
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+          }
+          @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+          }
+          @keyframes ping-slow {
+            75%, 100% {
+              transform: scale(2);
+              opacity: 0;
+            }
+          }
+          .animate-ping-slow {
+            animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+          }
+        `}
+      </style>
     </section>
   );
 }
