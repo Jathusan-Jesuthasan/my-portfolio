@@ -1,18 +1,19 @@
 import React from "react";
 import { FaCode, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaPython, FaJava, FaPhp } from "react-icons/fa";
 import { SiMongodb, SiTailwindcss, SiVite, SiFigma, SiTypescript, SiKotlin, SiMysql, SiBootstrap, SiAndroid, SiEclipseide, SiIntellijidea, SiGithub, SiExpress, SiCplusplus } from "react-icons/si";
-import { GiTalk, GiTeamIdea, GiTimeSynchronization } from "react-icons/gi";
 import { motion } from "framer-motion";
+import { GiTalk, GiTeamIdea, GiTimeSynchronization, GiSelfLove, GiBrain, GiAchievement } from "react-icons/gi";
+
 
 const SkillCard = ({ icon: Icon, label, category }) => {
   const categoryColors = {
-    "Programming": "text-purple-500",
-    "Web": "text-blue-500",
-    "Database": "text-green-500",
-    "Tools": "text-indigo-500",
-    "Concepts": "text-amber-500",
-    "VersionControl": "text-red-500",
-    "Professional": "text-amber-500",
+    "Programming": "text-purple-600",
+    "Web": "text-purple-600", 
+    "Database": "text-purple-600",
+    "Tools": "text-purple-600",
+    "Concepts": "text-purple-600",
+    "VersionControl": "text-purple-600",
+    "Professional": "text-purple-600",
   };
 
   return (
@@ -23,7 +24,7 @@ const SkillCard = ({ icon: Icon, label, category }) => {
       aria-label={label}
       role="img"
     >
-      <Icon className={`text-4xl ${categoryColors[category] || "text-indigo-500"}`} />
+      <Icon className={`text-4xl ${categoryColors[category] || "text-purple-600"}`} />
       <span className="text-sm font-medium text-center text-gray-700 dark:text-gray-300">{label}</span>
     </motion.div>
   );
@@ -73,11 +74,14 @@ const Skills = () => {
       ],
     },
     "Professional Skills": {
-      "Workplace Competencies": [
-        { icon: GiTalk, label: "Communication" , category: "Professional"},
-        { icon: GiTeamIdea, label: "Collaboration" , category: "Professional"},
-        { icon: GiTimeSynchronization, label: "Time Management" , category: "Professional"},
-      ],
+        "Workplace Competencies": [
+            { icon: GiTalk, label: "Communication", category: "Professional" },
+            { icon: GiTeamIdea, label: "Collaboration", category: "Professional" },
+            { icon: GiTimeSynchronization, label: "Time Management", category: "Professional" },
+            { icon: GiSelfLove, label: "Adaptability", category: "Professional" },
+            { icon: GiBrain, label: "Problem Solving", category: "Professional" },
+            { icon: GiAchievement, label: "Leadership", category: "Professional" },
+        ],
     },
   };
 
@@ -92,7 +96,7 @@ const Skills = () => {
       >
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            My <span className="text-indigo-600 dark:text-indigo-400">Skills</span>
+            My <span className="text-purple-600 dark:text-purple-400">Skills</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A collection of technical abilities and professional competencies I've developed
@@ -109,7 +113,7 @@ const Skills = () => {
             className="mb-12"
           >
             <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center gap-3">
-              <span className="w-2 h-8 bg-indigo-600 rounded-full"></span>
+              <span className="w-2 h-8 bg-purple-600 rounded-full"></span>
               {category}
             </h3>
 
