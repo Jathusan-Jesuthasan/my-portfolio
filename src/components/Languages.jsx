@@ -4,28 +4,30 @@ import { Globe } from "lucide-react";
 
 export default function Languages() {
   const languages = [
-    { 
-      name: "English", 
-      level: "Professional proficiency", 
+    {
+      name: "English",
+      level: "Professional proficiency",
       levelWidth: "80%",
-      description: "Fluent in technical documentation and professional communication"
+      description:
+        "Fluent in technical documentation and professional communication",
     },
-    { 
-      name: "Tamil", 
-      level: "Native", 
+    {
+      name: "Tamil",
+      level: "Native",
       levelWidth: "100%",
-      description: "Mother tongue with complete cultural understanding"
+      description: "Mother tongue with complete cultural understanding",
     },
-    { 
-      name: "Sinhala", 
-      level: "Basic understanding", 
+    {
+      name: "Sinhala",
+      level: "Basic understanding",
       levelWidth: "33%",
-      description: "Conversational ability for daily interactions"
+      description: "Conversational ability for daily interactions",
     },
   ];
 
   return (
     <motion.section
+      id="language"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -34,14 +36,21 @@ export default function Languages() {
       aria-labelledby="languages-heading"
     >
       <div className="flex items-center gap-4 mb-8">
-        <div className="bg-indigo-100 dark:bg-indigo-900/30 p-3 rounded-xl">
-          <Globe className="text-indigo-600 dark:text-indigo-400" size={24} />
+        <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-xl">
+          <Globe
+            className="text-purple-600 dark:text-purple-400"
+            size={24}
+            aria-hidden="true"
+          />
         </div>
-        <h3 
-          id="languages-heading" 
+        <h3
+          id="languages-heading"
           className="text-2xl font-bold text-gray-900 dark:text-white"
         >
-          Language <span className="text-indigo-600 dark:text-indigo-400">Proficiency</span>
+          Language{" "}
+          <span className="text-purple-600 dark:text-purple-400">
+            Proficiency
+          </span>
         </h3>
       </div>
 
@@ -64,7 +73,7 @@ export default function Languages() {
                   {language.description}
                 </p>
               </div>
-              <span className="text-sm bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full sm:mt-0 mt-2">
+              <span className="text-sm bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full sm:mt-0 mt-2">
                 {language.level}
               </span>
             </div>
@@ -82,7 +91,7 @@ export default function Languages() {
                 whileInView={{ width: language.levelWidth }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: index * 0.2 }}
-                className="h-full rounded-full bg-indigo-600 dark:bg-indigo-500 group-hover:bg-indigo-500 dark:group-hover:bg-indigo-400 transition-all"
+                className="h-full rounded-full bg-purple-600 dark:bg-purple-500 group-hover:bg-purple-500 dark:group-hover:bg-purple-400 transition-all"
               />
             </div>
           </motion.div>
