@@ -2,46 +2,40 @@ import React from "react";
 import { FaCertificate, FaAward } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const Certifications = [
+const certifications = [
   {
     title: "Agile and Scrum (Professional Diploma)",
     issuer: "Udemy",
     year: "2024",
-    link: "https://www.udemy.com/certificate/UC-0ffd1a78-b4f9-466e-83ce-e64356fb3c5a/",
+    link: "#",
   },
   {
     title: "Foundations of Prompt Engineering",
-    issuer: "AWS Skill Builder",
+    issuer: "AWS",
     year: "2025",
-    link: "https://skillbuilder.aws/learn/VF6H4SZ1BU/foundations-of-prompt-engineering/7U8XFUVXDT",
+    link: "#",
   },
   {
     title: "Web Design for Beginners",
     issuer: "University of Moratuwa",
     year: "2023",
-    link: "https://open.uom.lk/lms/mod/customcert/verify_certificate.php?code=TzFhz3pKba",
+    link: "#",
   },
   {
     title: "Build a Free Website with WordPress",
     issuer: "Coursera",
     year: "2023",
-    link: "https://www.coursera.org/account/accomplishments/verify/MV6WA2TE1Q5J",
+    link: "#",
   },
   {
     title: "Basic Digital Marketing",
     issuer: "Alison",
     year: "2022",
-    link: "https://alison.com/certification/check/a4b662ce6f",
-  },
-  {
-    title: "Skill Certification Badge",
-    issuer: "Badgr",
-    year: "2024",
-    link: "https://badgr.com/public/assertions/M5h-DyMWTiqsj2l-Tohm5w",
+    link: "#",
   },
 ];
 
-const certifications = () => {
+const Certifications = () => {
   return (
     <section id="certifications" className="py-16 px-4 sm:px-8 lg:px-20 bg-gray-950 text-white">
       <div className="max-w-6xl mx-auto">
@@ -113,4 +107,4 @@ const certifications = () => {
   );
 };
 
-export default certifications;
+export default Certifications;
