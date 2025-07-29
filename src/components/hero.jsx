@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-6 md:px-16 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -25,16 +25,16 @@ export default function Hero() {
         <div className="absolute -bottom-20 left-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-10 md:gap-12 lg:gap-16 py-16 sm:py-20">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex-1 space-y-8"
+          className="flex-1 space-y-6 sm:space-y-7 md:space-y-8"
         >
-          <div className="space-y-4">
-            <p className="text-lg md:text-xl font-medium text-purple-400">Hello, I'm</p>
-           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <div className="space-y-3 sm:space-y-4">
+            <p className="text-base sm:text-lg md:text-xl font-medium text-purple-400">Hello, I'm</p>
+           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
              Jathusan <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">Jesuthasan</span>
            </h1>
 
@@ -43,23 +43,23 @@ export default function Hero() {
           </div>
 
           <div className="max-w-xl">
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed">
               3rd Year Software Engineering undergraduate at SLIIT, passionate about crafting exceptional digital experiences through modern web technologies and clean code practices.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 md:gap-6 pt-3 sm:pt-4">
             <motion.a
               aria-label="Contact me"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(147, 51, 234, 0.5)" }}
               whileTap={{ scale: 0.95 }}
               href="#contact"
-              className="px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg font-semibold text-lg shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
+              className="px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg font-semibold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
             >
               Get in Touch
             </motion.a>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-5 md:gap-6">
               {socialLinks.map(({ icon: Icon, url, label }, idx) => (
                 <a
                   key={idx}
@@ -67,7 +67,7 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="text-gray-300 hover:text-indigo-400 text-2xl transition-colors"
+                  className="text-gray-300 hover:text-indigo-400 text-xl sm:text-2xl transition-colors p-2 hover:bg-white/10 rounded-lg"
                 >
                   <Icon />
                 </a>

@@ -20,12 +20,12 @@ const SkillCard = ({ icon: Icon, label, category }) => {
     <motion.div
       whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className={`flex flex-col items-center gap-3 bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all`}
+      className={`flex flex-col items-center gap-2 sm:gap-3 bg-white dark:bg-gray-800 p-3 sm:p-4 md:p-5 rounded-xl shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all`}
       aria-label={label}
       role="img"
     >
-      <Icon className={`text-4xl ${categoryColors[category] || "text-purple-600"}`} />
-      <span className="text-sm font-medium text-center text-gray-700 dark:text-gray-300">{label}</span>
+      <Icon className={`text-2xl sm:text-3xl md:text-4xl ${categoryColors[category] || "text-purple-600"}`} />
+      <span className="text-xs sm:text-sm font-medium text-center text-gray-700 dark:text-gray-300 leading-tight">{label}</span>
     </motion.div>
   );
 };
@@ -86,7 +86,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-16 px-4 sm:px-8 lg:px-20 bg-gray-50 dark:bg-gray-950">
+    <section id="skills" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-gray-50 dark:bg-gray-950">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -94,11 +94,11 @@ const Skills = () => {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto"
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
             My <span className="text-purple-600 dark:text-purple-400">Skills</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A collection of technical abilities and professional competencies I've developed
           </p>
         </div>
@@ -110,20 +110,20 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: catIdx * 0.1 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-8 sm:mb-10 md:mb-12"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center gap-3">
-              <span className="w-2 h-8 bg-purple-600 rounded-full"></span>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-5 md:mb-6 text-gray-800 dark:text-white flex items-center gap-2 sm:gap-3">
+              <span className="w-1.5 sm:w-2 h-6 sm:h-8 bg-purple-600 rounded-full"></span>
               {category}
             </h3>
 
-            {Object.entries(subcategories).map(([subcat, skills], subcatIdx) => (
-              <div key={subcat} className="mb-8">
-                <h4 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
+            {Object.entries(subcategories).map(([subcat, skills], _subcatIdx) => (
+              <div key={subcat} className="mb-6 sm:mb-7 md:mb-8">
+                <h4 className="text-base sm:text-lg font-medium mb-3 sm:mb-4 text-gray-700 dark:text-gray-300">
                   {subcat}
                 </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {skills.map((skill, idx) => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+                  {skills.map((skill, _idx) => (
                     <SkillCard
                       key={skill.label} 
                       icon={skill.icon}

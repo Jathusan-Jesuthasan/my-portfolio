@@ -44,7 +44,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="bg-gray-950 text-white py-16 px-4 sm:px-8 lg:px-20"
+      className="bg-gray-950 text-white py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -52,12 +52,12 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold mb-12 text-center text-indigo-400"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center text-indigo-400"
         >
           Projects
         </motion.h2>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:gap-6 md:gap-7 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {categorizedProjects.map((project, index) => (
             <motion.article
               key={`${project.title}-${index}`}
@@ -65,35 +65,35 @@ const Projects = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-              className="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl h-full flex flex-col"
+              className="bg-gray-900 p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 hover:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl h-full flex flex-col"
             >
               {project.image && (
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
-                  className="rounded-md mb-4 w-full object-cover h-40"
+                  className="rounded-md mb-3 sm:mb-4 w-full object-cover h-32 sm:h-36 md:h-40"
                 />
               )}
 
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-semibold text-white">
+              <div className="flex justify-between items-start mb-2 sm:mb-3">
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white leading-tight pr-2">
                   {project.title}
                 </h3>
-                <span className="text-xs bg-gray-800 text-indigo-300 px-2 py-1 rounded-full flex items-center gap-1">
+                <span className="text-xs bg-gray-800 text-indigo-300 px-2 py-1 rounded-full flex items-center gap-1 flex-shrink-0">
                   {projectCategories[project.category].icon}
-                  {projectCategories[project.category].label}
+                  <span className="hidden sm:inline">{projectCategories[project.category].label}</span>
                 </span>
               </div>
 
-              <time className="text-xs text-indigo-300 mb-3 block">
+              <time className="text-xs text-indigo-300 mb-2 sm:mb-3 block">
                 {project.period}
               </time>
 
-              <p className="text-gray-400 mb-4 text-sm flex-grow">
+              <p className="text-gray-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed flex-grow">
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                 {project.tech.map((tech, idx) => (
                   <span
                     key={idx}
@@ -105,7 +105,7 @@ const Projects = () => {
                 ))}
               </div>
 
-              <div className="flex gap-4 text-sm mt-auto">
+              <div className="flex gap-3 sm:gap-4 text-xs sm:text-sm mt-auto">
                 {project.github ? (
                   <motion.a
                     href={project.github}
@@ -115,10 +115,10 @@ const Projects = () => {
                     className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1"
                     aria-label={`View ${project.title} on GitHub`}
                   >
-                    <FaGithub /> Code
+                    <FaGithub className="text-sm" /> Code
                   </motion.a>
                 ) : (
-                  <span className="text-gray-500 italic">Private</span>
+                  <span className="text-gray-500 italic text-xs">Private</span>
                 )}
                 {project.link ? (
                   <motion.a
@@ -129,10 +129,10 @@ const Projects = () => {
                     className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1"
                     aria-label={`View ${project.title} live demo`}
                   >
-                    <FaExternalLinkAlt /> Live
+                    <FaExternalLinkAlt className="text-sm" /> Live
                   </motion.a>
                 ) : (
-                  <span className="text-gray-500 italic">No demo</span>
+                  <span className="text-gray-500 italic text-xs">No demo</span>
                 )}
               </div>
             </motion.article>

@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { darkMode, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (isDarkMode) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [isDarkMode]);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
   const navItems = [
     {
@@ -31,38 +24,58 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const scrollToSection = (href) => {
+    const id = href.replace("#", "");
+    
+    const tryScroll = (attempts = 0) => {
+      const section = document.getElementById(id);
+      
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      } else if (attempts < 10) {
+        // If section not found, wait a bit and try again (for lazy-loaded components)
+        setTimeout(() => tryScroll(attempts + 1), 100);
+      }
+    };
+    
+    tryScroll();
+  };
+
   return (
-    <nav id="navbar" className="bg-white dark:bg-gray-900 shadow-md fixed top-0 w-full z-50 transition-colors duration-300">
+    <nav className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md fixed top-0 w-full z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <div id="logo" className="flex-shrink-0 text-2xl font-bold text-purple-600 dark:text-purple-400">
-            Jathusan <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700">Jesuthasan</span>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-purple-600 dark:text-purple-400">
+            Jathusan{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700">
+              Jesuthasan
+            </span>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            <ul className="flex space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <ul className="flex space-x-6 lg:space-x-8">
               {navItems.map((item) => (
                 <li key={item.name} className="relative group">
-                  <motion.a
+                  <motion.button
                     whileHover={{ y: -2 }}
-                    href={item.href}
-                    className="relative text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    onClick={() => scrollToSection(item.href)}
+                    className="relative text-sm font-medium px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200"
                   >
                     {item.name}
-                  </motion.a>
+                  </motion.button>
 
                   {item.subItems && (
-                    <ul className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition-all duration-200 z-50 invisible group-hover:visible">
+                    <ul className="absolute top-full left-0 mt-2 w-44 sm:w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-xl opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform transition-all duration-200 z-50 invisible group-hover:visible">
                       {item.subItems.map((subItem) => (
                         <li key={subItem.name}>
-                          <a
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          <button
+                            onClick={() => scrollToSection(subItem.href)}
+                            className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                           >
                             {subItem.name}
-                          </a>
+                          </button>
                         </li>
                       ))}
                     </ul>
@@ -71,12 +84,11 @@ const Navbar = () => {
               ))}
             </ul>
             <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="ml-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              id="theme-toggle"
+              onClick={toggleTheme}
+              className="ml-4 w-10 h-10 flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {isDarkMode ? (
+              {darkMode ? (
                 <FiSun className="h-5 w-5 text-yellow-500" />
               ) : (
                 <FiMoon className="h-5 w-5 text-gray-800" />
@@ -87,36 +99,19 @@ const Navbar = () => {
           {/* Mobile Nav Toggle */}
           <div className="md:hidden flex items-center">
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                setIsOpen(!isOpen);
+                if (isOpen) setOpenSubmenu(null);
+              }}
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500"
-              aria-controls="mobile-menu"
-              aria-expanded={isOpen}
-              aria-label={isOpen ? "Close main menu" : "Open main menu"}
-              id="mobile-menu-toggle"
+              aria-label="Toggle mobile menu"
             >
-              <svg
-                className="block h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
+              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
             </button>
@@ -133,50 +128,82 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900"
-            id="mobile-menu"
+            className="md:hidden bg-white dark:bg-gray-900 px-4 py-4 space-y-2"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <div key={item.name}>
-                  <motion.a
+            {navItems.map((item) => (
+              <div key={item.name}>
+                {item.subItems ? (
+                  <div>
+                    <button
+                      onClick={() => setOpenSubmenu(openSubmenu === item.name ? null : item.name)}
+                      className="flex items-center justify-between w-full px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    >
+                      <span>{item.name}</span>
+                      <svg className={`w-4 h-4 transition-transform ${openSubmenu === item.name ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {openSubmenu === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-4 space-y-1 pt-1">
+                            {item.subItems.map((subItem) => (
+                              <button
+                                key={subItem.name}
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setOpenSubmenu(null);
+                                  // Add a small delay to allow menu to close before scrolling
+                                  setTimeout(() => {
+                                    scrollToSection(subItem.href);
+                                  }, 100);
+                                }}
+                                className="w-full text-left block px-3 py-2 rounded-md text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                              >
+                                {subItem.name}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <motion.button
                     whileTap={{ scale: 0.95 }}
-                    href={item.href}
                     onClick={() => {
-                      if (!item.subItems) setIsOpen(false);
+                      setIsOpen(false);
+                      setOpenSubmenu(null);
+                      // Add a small delay to allow menu to close before scrolling
+                      setTimeout(() => {
+                        scrollToSection(item.href);
+                      }, 100);
                     }}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    className="block w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                   >
                     {item.name}
-                  </motion.a>
-                  {item.subItems && (
-                    <div className="pl-4 space-y-1">
-                      {item.subItems.map((subItem) => (
-                        <a
-                          key={subItem.name}
-                          href={subItem.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-3 py-1 rounded-md text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                        >
-                          {subItem.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <div className="px-3 py-2">
-                <button
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-                >
-                  {isDarkMode ? (
-                    <FiSun className="h-5 w-5 text-yellow-500" />
-                  ) : (
-                    <FiMoon className="h-5 w-5 text-gray-800" />
-                  )}
-                </button>
+                  </motion.button>
+                )}
               </div>
+            ))}
+
+            <div className="pt-2 px-3">
+              <button
+                onClick={toggleTheme}
+                className="w-10 h-10 flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              >
+                {darkMode ? (
+                  <FiSun className="h-5 w-5 text-yellow-500" />
+                ) : (
+                  <FiMoon className="h-5 w-5 text-gray-800" />
+                )}
+              </button>
             </div>
           </motion.div>
         )}

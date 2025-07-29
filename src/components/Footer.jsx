@@ -99,7 +99,7 @@ export default function Footer() {
 
         {/* Footer note */}
         <div className="mt-8 text-center text-xs text-gray-500">
-          Built with React & Tailwind CSS in Sri Lanka. <br />
+          Built with React & Tailwind CSS <br />
           <span className="italic text-gray-400">
             “Dream it. Code it. Ship it.”
           </span>

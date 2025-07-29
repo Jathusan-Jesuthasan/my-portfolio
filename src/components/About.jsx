@@ -15,7 +15,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 px-4 sm:px-8 lg:px-20 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -23,62 +23,62 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12 sm:mb-14 md:mb-16 lg:mb-20"
         >
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-4">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 text-sm font-medium rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 mb-3 sm:mb-4">
               About Me
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
               Crafting Digital Experiences <span className="text-purple-600 dark:text-purple-400">With Precision</span>
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+            <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400">
               Software engineer blending technical expertise with creative problem-solving
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-start">
             {/* Left Column - Text Content */}
-            <div className="space-y-8">
-              <div className="prose dark:prose-invert max-w-none">
-                <p className="text-lg leading-relaxed">
+            <div className="space-y-6 sm:space-y-7 md:space-y-8">
+              <div className="prose dark:prose-invert max-w-none space-y-4 sm:space-y-5 md:space-y-6">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   Hello! I'm <span className="font-semibold text-gray-900 dark:text-white">Jathusan Jesuthasan</span>, a dedicated third-year Software Engineering student at SLIIT with a focus on full-stack development. My journey in tech combines academic rigor with hands-on experience building real-world solutions.
                 </p>
 
-                <p className="text-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   As both a student and freelancer, I've developed a unique perspective that bridges theoretical knowledge with practical application. My work emphasizes clean architecture, performance optimization, and intuitive user experiences.
                 </p>
 
-                <p className="text-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   When I'm not coding, you'll find me contributing to open-source projects, writing technical articles, or exploring emerging technologies in AI and cloud computing.
                 </p>
               </div>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-6 sm:mt-7 md:mt-8">
                 {stats.map((stat, index) => (
                   <motion.div
                     key={index}
                     whileHover={{ y: -5 }}
-                    className="bg-white dark:bg-gray-900 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm text-center"
+                    className="bg-white dark:bg-gray-900 p-3 sm:p-4 md:p-5 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm text-center"
                   >
-                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4 md:pt-5">
                 <motion.a
                   href="https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition shadow-lg hover:shadow-purple-500/20 text-white"
+                  className="flex items-center justify-center sm:justify-start gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition shadow-lg hover:shadow-purple-500/20 text-white text-sm sm:text-base"
                 >
-                  <FaLinkedin size={18} />
+                  <FaLinkedin size={16} />
                   <span>Connect on LinkedIn</span>
                 </motion.a>
 
@@ -87,7 +87,7 @@ export default function About() {
                   download
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-5 py-3 border border-gray-300 dark:border-gray-700 hover:border-indigo-400 text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition"
+                  className="flex items-center justify-center sm:justify-start gap-2 px-4 sm:px-5 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-700 hover:border-indigo-400 text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition text-sm sm:text-base"
                 >
                   <FaDownload size={16} />
                   <span>Download CV</span>

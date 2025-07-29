@@ -147,7 +147,7 @@ Sent via your portfolio contact form`;
   return (
     <section
       id="contact"
-      className="bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white py-20 px-4 sm:px-8 lg:px-20"
+      className="bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -155,67 +155,67 @@ Sent via your portfolio contact form`;
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-600 bg-clip-text text-transparent">
             Get In Touch
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
             Let's discuss how we can work together to bring your ideas to life
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-14 lg:gap-16">
           {/* Contact Information */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-7 md:space-y-8"
           >
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-white leading-tight">
+            <div className="space-y-4 sm:space-y-5 md:space-y-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
                 Let's collaborate on something{" "}
                 <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
                   extraordinary
                 </span>
               </h3>
               
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
                 I'm a 3rd year Software Engineering student at SLIIT, passionate about creating innovative solutions and building meaningful digital experiences. 
                 Whether you have a project in mind or just want to connect, I'd love to hear from you.
               </p>
 
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-purple-600/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-600/20 text-purple-300 rounded-full text-xs sm:text-sm font-medium border border-purple-500/30">
                   Frontend Development
                 </span>
-                <span className="px-4 py-2 bg-indigo-600/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-600/20 text-indigo-300 rounded-full text-xs sm:text-sm font-medium border border-indigo-500/30">
                   Full Stack Solutions
                 </span>
-                <span className="px-4 py-2 bg-blue-600/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600/20 text-blue-300 rounded-full text-xs sm:text-sm font-medium border border-blue-500/30">
                   Problem Solving
                 </span>
               </div>
             </div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3 sm:space-y-4">
               {socialLinks.map((link, index) => (
                 <motion.li 
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="flex items-center gap-4 group"
+                  className="flex items-center gap-3 sm:gap-4 group"
                 >
-                  <span className="bg-gradient-to-r from-purple-600/20 to-indigo-600/20 p-3 rounded-xl group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                    {React.cloneElement(link.icon, { className: "text-purple-400 text-xl" })}
+                  <span className="bg-gradient-to-r from-purple-600/20 to-indigo-600/20 p-2.5 sm:p-3 rounded-xl group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300 flex-shrink-0">
+                    {React.cloneElement(link.icon, { className: "text-purple-400 text-lg sm:text-xl" })}
                   </span>
                   <a
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline font-medium"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline font-medium text-sm sm:text-base"
                   >
                     {link.label}
                   </a>
@@ -233,13 +233,13 @@ Sent via your portfolio contact form`;
             className="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-indigo-600/10 rounded-2xl blur-xl"></div>
-            <div className="relative bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 shadow-2xl">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">Send me a message</h3>
-                <p className="text-gray-400">I'll get back to you within 24 hours</p>
+            <div className="relative bg-gray-900/80 backdrop-blur-sm p-6 sm:p-7 md:p-8 rounded-2xl border border-gray-700/50 shadow-2xl">
+              <div className="mb-6 sm:mb-7 md:mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Send me a message</h3>
+                <p className="text-gray-400 text-sm sm:text-base">I'll get back to you within 24 hours</p>
               </div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-200 mb-2">
                   Your Name *
@@ -252,7 +252,7 @@ Sent via your portfolio contact form`;
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 backdrop-blur-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 backdrop-blur-sm text-sm sm:text-base"
                 />
               </div>
 
@@ -268,7 +268,7 @@ Sent via your portfolio contact form`;
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 backdrop-blur-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 backdrop-blur-sm text-sm sm:text-base"
                 />
               </div>
 
@@ -279,12 +279,12 @@ Sent via your portfolio contact form`;
                 <textarea
                   id="message"
                   name="message"
-                  rows="5"
+                  rows="4"
                   placeholder="Tell me about your project or idea..."
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 resize-none backdrop-blur-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-gray-800/60 border border-gray-600/50 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-white placeholder-gray-400 transition-all duration-200 resize-none backdrop-blur-sm text-sm sm:text-base"
                 ></textarea>
               </div>
 
@@ -293,7 +293,7 @@ Sent via your portfolio contact form`;
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 sm:py-3.5 md:py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <>
