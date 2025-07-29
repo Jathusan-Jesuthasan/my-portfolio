@@ -30,23 +30,36 @@ const Projects = () => {
   const categorizedProjects = useMemo(() => {
     return projects.map(project => {
       let category = "web";
+      let categories = ["web"]; // Track multiple categories
+      
+      // Check for mobile app
       if (
         project.tech.some(t => t.includes("Mobile")) ||
         project.title.includes("App")
       ) {
         category = "mobile";
-      } else if (
-        project.tech.some(t => t.includes("UI/UX") || t.includes("Figma"))
-      ) {
-        category = "design";
+        categories = ["mobile"];
       }
-      return { ...project, category };
+      
+      // Check for UI/UX Design (can be in addition to mobile)
+      if (project.tech.some(t => t.includes("UI/UX") || t.includes("Figma"))) {
+        if (category === "mobile") {
+          categories = ["mobile", "design"]; // Both mobile and design
+        } else {
+          category = "design";
+          categories = ["design"];
+        }
+      }
+      
+      return { ...project, category, categories };
     });
   }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "all") return categorizedProjects;
-    return categorizedProjects.filter(project => project.category === activeFilter);
+    return categorizedProjects.filter(project => 
+      project.categories.includes(activeFilter)
+    );
   }, [categorizedProjects, activeFilter]);
 
   const filterOptions = [
@@ -244,7 +257,7 @@ const Projects = () => {
 const projects = [
   {
     title: "Smart Accounting Assistant – MERN Stack",
-    period: "2023 - Present",
+    period: "2025",
     description:
       "Developed a real-world AI-powered Smart Accounting Assistant using the MERN stack to automate business financial operations. The system includes transaction categorization, salary calculation, tax computation, invoicing, and AI-driven insights through Gemini API integration.",
     tech: ["MERN Stack", "Node.js", "React", "Gemini API", "AI", "MongoDB"],
@@ -254,7 +267,7 @@ const projects = [
   },
   {
     title: "CashLeaf – Personal Finance Tracker",
-    period: "2023",
+    period: "2025",
     description:
       "Created a Kotlin-based mobile app for daily income and expense tracking, budget management, and real-time visual analytics. Implemented SharedPreferences for local data persistence and intuitive UI components with Android Studio.",
     tech: ["Kotlin", "Android Studio", "SharedPreferences", "Finance", "Mobile App"],
@@ -264,7 +277,7 @@ const projects = [
   },
   {
     title: "PlanIt – Event Management System",
-    period: "2023",
+    period: "2024",
     description:
       "Developed a full-stack event booking web application with role-based access control, dynamic event listings, booking and payment management, and comprehensive admin dashboard. Built using MVC architecture with OOP principles and complete CRUD operations. Features responsive UI design with HTML, CSS, JavaScript, and Bootstrap.",
     tech: ["Java Servlets", "JSP", "JDBC", "MySQL", "MVC", "Bootstrap", "HTML", "CSS", "JavaScript"],
@@ -274,7 +287,7 @@ const projects = [
   },
   {
     title: "Movie Booking System",
-    period: "2022",
+    period: "2024",
     description:
       "Engineered a web-based movie reservation platform with full CRUD operations, integrated payment module, and a contact form. Built using HTML, CSS, PHP, and MySQL with a focus on responsive UI and secure backend.",
     tech: ["HTML", "CSS", "PHP", "MySQL", "CRUD", "Web App"],
@@ -283,18 +296,18 @@ const projects = [
     image: "/images/movie-booking.png"
   },
   {
-    title: "Aara Cakes – Online Cake Ordering App (UI/UX)",
-    period: "2023",
+    title: "Aara Cakes – Online Cake Ordering App (UI/UX Prototype)",
+    period: "2025",
     description:
-      "Designed a complete mobile UI using Figma for an online cake ordering app. Included features like cake customization, real-time order tracking, secure payment screens, and promotional banners with a user-centered approach.",
-    tech: ["Figma", "UI/UX", "Mobile Design", "Prototyping"],
-    github: "", // Add if available
-    link: "",   // Add if available
+      "Created a comprehensive mobile app UI/UX prototype in Figma for an online cake ordering platform. Designed user-centered interfaces for cake browsing, customization, order tracking, secure payment flows, and promotional features. Includes complete user journey mockups from product discovery to order completion with intuitive navigation and modern design principles.",
+    tech: ["Mobile App", "Figma", "UI/UX Design", "Mobile Prototyping", "User Research", "Wireframing", "Design Systems"],
+    github: "", // Design prototype - no code repository
+    link: "",   // Could add Figma prototype link if available
     image: "/images/aara-cakes-ui.png"
   },
   {
     title: "Nithuja Cakes Portfolio Website",
-    period: "2024",
+    period: "2025",
     description:
       "Developed a modern portfolio site for a home-based cake business using React and Tailwind CSS. Features include a custom order form, WhatsApp ordering integration, and a photo gallery to showcase cake designs.",
     tech: ["React", "Tailwind CSS", "WhatsApp API", "Portfolio"],
