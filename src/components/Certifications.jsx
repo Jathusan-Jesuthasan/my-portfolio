@@ -2,7 +2,7 @@ import React from "react";
 import { FaCertificate, FaAward } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const Certifications = [
+const certifications = [
   {
     title: "Agile and Scrum (Professional Diploma)",
     issuer: "Udemy",
