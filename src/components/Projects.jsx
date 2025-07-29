@@ -1,10 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   FaExternalLinkAlt,
   FaGithub,
   FaMobile,
   FaServer,
-  FaPalette
+  FaPalette,
+  FaFilter
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -24,6 +25,8 @@ const projectCategories = {
 };
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("all");
+
   const categorizedProjects = useMemo(() => {
     return projects.map(project => {
       let category = "web";
@@ -41,6 +44,18 @@ const Projects = () => {
     });
   }, []);
 
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "all") return categorizedProjects;
+    return categorizedProjects.filter(project => project.category === activeFilter);
+  }, [categorizedProjects, activeFilter]);
+
+  const filterOptions = [
+    { key: "all", label: "All Projects", icon: <FaFilter /> },
+    { key: "web", label: "Web Development", icon: <FaServer /> },
+    { key: "mobile", label: "Mobile Apps", icon: <FaMobile /> },
+    { key: "design", label: "UI/UX Design", icon: <FaPalette /> }
+  ];
+
   return (
     <section
       id="projects"
@@ -52,27 +67,97 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12 text-center text-indigo-400"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center text-indigo-400"
         >
           Projects
         </motion.h2>
 
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-center text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto"
+        >
+          A collection of projects showcasing my skills in full-stack development, mobile apps, and UI/UX design
+        </motion.p>
+
+        {/* Filter Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10"
+        >
+          {filterOptions.map((option) => (
+            <button
+              key={option.key}
+              onClick={() => setActiveFilter(option.key)}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                activeFilter === option.key
+                  ? "bg-indigo-500 text-white shadow-lg"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-indigo-300"
+              }`}
+            >
+              <span className="text-xs">{option.icon}</span>
+              <span className="hidden sm:inline">{option.label}</span>
+              <span className="sm:hidden">{option.key === "all" ? "All" : option.label.split(" ")[0]}</span>
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Projects Count */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="text-center text-gray-500 text-sm mb-6 sm:mb-8"
+        >
+          {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} 
+          {activeFilter !== "all" && (
+            <span> in {filterOptions.find(f => f.key === activeFilter)?.label}</span>
+          )}
+        </motion.div>
+
         <div className="grid gap-5 sm:gap-6 md:gap-7 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {categorizedProjects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.article
               key={`${project.title}-${index}`}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-              className="bg-gray-900 p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 hover:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl h-full flex flex-col"
+              className="bg-gray-900 p-4 sm:p-5 md:p-6 rounded-xl border border-gray-800 hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 h-full flex flex-col group"
             >
-              {project.image && (
-                <img
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  className="rounded-md mb-3 sm:mb-4 w-full object-cover h-32 sm:h-36 md:h-40"
-                />
+              {project.image ? (
+                <div className="relative overflow-hidden rounded-md mb-3 sm:mb-4 group">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    className="w-full object-cover h-32 sm:h-36 md:h-40 transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="hidden absolute inset-0 bg-gray-800 items-center justify-center rounded-md">
+                    <div className="text-center text-gray-500">
+                      {projectCategories[project.category].icon}
+                      <p className="text-xs mt-2">Preview Coming Soon</p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
+              ) : (
+                <div className="bg-gray-800 rounded-md mb-3 sm:mb-4 h-32 sm:h-36 md:h-40 flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    {projectCategories[project.category].icon}
+                    <p className="text-xs mt-2">Preview Coming Soon</p>
+                  </div>
+                </div>
               )}
 
               <div className="flex justify-between items-start mb-2 sm:mb-3">
@@ -94,31 +179,40 @@ const Projects = () => {
               </p>
 
               <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-                {project.tech.map((tech, idx) => (
+                {project.tech.slice(0, 4).map((tech, idx) => (
                   <span
                     key={idx}
-                    className="bg-gray-800 text-xs px-2 py-1 rounded-full text-indigo-300"
+                    className="bg-gray-800 text-xs px-2 py-1 rounded-full text-indigo-300 hover:bg-indigo-900/30 transition-colors"
                     aria-label={`Technology: ${tech}`}
                   >
                     {tech}
                   </span>
                 ))}
+                {project.tech.length > 4 && (
+                  <span className="bg-gray-700 text-xs px-2 py-1 rounded-full text-gray-400">
+                    +{project.tech.length - 4} more
+                  </span>
+                )}
               </div>
 
-              <div className="flex gap-3 sm:gap-4 text-xs sm:text-sm mt-auto">
+              <div className="flex gap-3 sm:gap-4 text-xs sm:text-sm mt-auto pt-2 border-t border-gray-800">
                 {project.github ? (
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -2 }}
-                    className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1"
+                    whileTap={{ scale: 0.95 }}
+                    className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1.5 hover:bg-gray-800 px-2 py-1 rounded"
                     aria-label={`View ${project.title} on GitHub`}
                   >
-                    <FaGithub className="text-sm" /> Code
+                    <FaGithub className="text-sm" /> 
+                    <span>Code</span>
                   </motion.a>
                 ) : (
-                  <span className="text-gray-500 italic text-xs">Private</span>
+                  <span className="text-gray-500 italic text-xs flex items-center gap-1.5 px-2 py-1">
+                    <FaGithub className="text-sm opacity-50" /> Private
+                  </span>
                 )}
                 {project.link ? (
                   <motion.a
@@ -126,13 +220,17 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -2 }}
-                    className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1"
+                    whileTap={{ scale: 0.95 }}
+                    className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1.5 hover:bg-gray-800 px-2 py-1 rounded"
                     aria-label={`View ${project.title} live demo`}
                   >
-                    <FaExternalLinkAlt className="text-sm" /> Live
+                    <FaExternalLinkAlt className="text-sm" /> 
+                    <span>Live</span>
                   </motion.a>
                 ) : (
-                  <span className="text-gray-500 italic text-xs">No demo</span>
+                  <span className="text-gray-500 italic text-xs flex items-center gap-1.5 px-2 py-1">
+                    <FaExternalLinkAlt className="text-sm opacity-50" /> No demo
+                  </span>
                 )}
               </div>
             </motion.article>
@@ -163,6 +261,16 @@ const projects = [
     github: "", // Add if available
     link: "",   // Add if available
     image: "/images/cashleaf-app.png"
+  },
+  {
+    title: "PlanIt – Event Management System",
+    period: "2023",
+    description:
+      "Developed a full-stack event booking web application with role-based access control, dynamic event listings, booking and payment management, and comprehensive admin dashboard. Built using MVC architecture with OOP principles and complete CRUD operations. Features responsive UI design with HTML, CSS, JavaScript, and Bootstrap.",
+    tech: ["Java Servlets", "JSP", "JDBC", "MySQL", "MVC", "Bootstrap", "HTML", "CSS", "JavaScript"],
+    github: "", // Add if available
+    link: "",   // Add if available
+    image: "/images/planit-event.png"
   },
   {
     title: "Movie Booking System",
