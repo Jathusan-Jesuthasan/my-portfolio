@@ -6,7 +6,7 @@ import Hero from "./components/hero.jsx";
 const About = lazy(() => import("./components/About"));
 const Projects = lazy(() => import("./components/Projects"));
 const Skills = lazy(() => import("./components/Skills"));
-const Certifications = lazy(() => import("./components/certifications.jsx"));
+const Certifications = lazy(() => import("./components/Certifications"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
