@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { darkMode, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
+  const navigate = useNavigate();
 
   const navItems = [
     {
@@ -26,18 +28,20 @@ const Navbar = () => {
 
   const scrollToSection = (href) => {
     const id = href.replace("#", "");
-    
+
     const tryScroll = (attempts = 0) => {
       const section = document.getElementById(id);
-      
+
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       } else if (attempts < 10) {
         // If section not found, wait a bit and try again (for lazy-loaded components)
-        setTimeout(() => tryScroll(attempts + 1), 100);
+        setTimeout(() => tryScroll(attempts + 1), 120);
+      } else {
+        navigate("/", { state: { scrollTo: id } });
       }
     };
-    
+
     tryScroll();
   };
 

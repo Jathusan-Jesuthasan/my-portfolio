@@ -25,13 +25,29 @@ const HomePage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/" && location.state?.scrollTo) {
+    if (!location.state?.scrollTo) return;
+    let attempts = 0;
+    let frameId = null;
+
+    const scrollToSection = () => {
       const target = document.getElementById(location.state.scrollTo);
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
+        window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+        return;
       }
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+
+      if (attempts < 15) {
+        attempts += 1;
+        frameId = requestAnimationFrame(scrollToSection);
+      }
+    };
+
+    scrollToSection();
+
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+    };
   }, [location]);
 
   return (

@@ -5,6 +5,7 @@ import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { FiChevronDown } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const socialLinks = [
   { icon: FaLinkedin, url: "https://www.linkedin.com/in/jathusan-jesuthasan-69a057294/", label: "LinkedIn" },
@@ -14,6 +15,11 @@ const socialLinks = [
 ];
 
 export default function Hero() {
+  const navigate = useNavigate();
+
+  const scrollToProjects = () => {
+    navigate('/', { state: { scrollTo: 'projects' } });
+  };
   return (
     <section
       id="hero"
@@ -56,15 +62,16 @@ export default function Hero() {
             >
               Get in Touch
             </motion.a>
-            <motion.a
-              href="#projects"
+            <motion.button
+              type="button"
               aria-label="View my projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={scrollToProjects}
               className="px-6 py-3 border-2 border-indigo-500 hover:bg-indigo-600 hover:text-white transition text-indigo-300 font-semibold rounded-xl text-center"
             >
               View My Projects
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Social Icons */}
