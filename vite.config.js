@@ -16,7 +16,8 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           framer: ['framer-motion'],
           icons: ['react-icons'],
-          emailjs: ['@emailjs/browser']
+          emailjs: ['@emailjs/browser'],
+          router: ['react-router-dom']
         }
       }
     },
@@ -39,7 +40,7 @@ export default defineConfig({
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion'],
+    include: ['react', 'react-dom', 'framer-motion', 'react-router-dom'],
     // Pre-bundle heavy dependencies
     force: true
   },
@@ -48,5 +49,7 @@ export default defineConfig({
     hmr: {
       overlay: false // Reduce development overhead
     }
-  }
+  },
+  // Image optimization hints
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.webp']
 })

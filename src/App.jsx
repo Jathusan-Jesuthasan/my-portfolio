@@ -1,4 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/hero.jsx";
 
@@ -9,6 +11,7 @@ const Skills = lazy(() => import("./components/Skills"));
 const Certifications = lazy(() => import("./components/Certifications.jsx"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
+const ViewProject = lazy(() => import("./components/ViewProject"));
 
 // Loading fallback component with better performance
 const LoadingFallback = () => (
@@ -17,10 +20,22 @@ const LoadingFallback = () => (
   </div>
 );
 
-export default function App() {
+// Home page component
+const HomePage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollTo) {
+      const target = document.getElementById(location.state.scrollTo);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [location]);
+
   return (
     <>
-      <Navbar />
       <Hero />
       <Suspense fallback={<LoadingFallback />}>
         <About />
@@ -35,5 +50,28 @@ export default function App() {
         <Footer />
       </Suspense>
     </>
+  );
+};
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-950 text-white">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route 
+              path="/project/:projectId" 
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <ViewProject />
+                </Suspense>
+              } 
+            />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }

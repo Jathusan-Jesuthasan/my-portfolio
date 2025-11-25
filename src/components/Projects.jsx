@@ -1,13 +1,16 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaExternalLinkAlt,
   FaGithub,
   FaMobile,
   FaServer,
   FaPalette,
-  FaFilter
+  FaFilter,
+  FaEye
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { projects } from "../data/projects.js";
 
 const projectCategories = {
   web: {
@@ -26,6 +29,12 @@ const projectCategories = {
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const navigate = useNavigate();
+
+  // Function to handle project navigation
+  const handleProjectClick = (project) => {
+    navigate(`/project/${project.id}`);
+  };
 
   const categorizedProjects = useMemo(() => {
     return projects.map(project => {
@@ -209,6 +218,17 @@ const Projects = () => {
               </div>
 
               <div className="flex gap-3 sm:gap-4 text-xs sm:text-sm mt-auto pt-2 border-t border-gray-800">
+                <motion.button
+                  onClick={() => handleProjectClick(project)}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1.5 hover:bg-gray-800 px-2 py-1 rounded"
+                  aria-label={`View ${project.title} details`}
+                >
+                  <FaEye className="text-sm" /> 
+                  <span>View Details</span>
+                </motion.button>
+                
                 {project.github ? (
                   <motion.a
                     href={project.github}
@@ -253,79 +273,5 @@ const Projects = () => {
     </section>
   );
 };
-
-const projects = [
-  {
-    title: "Smart Accounting Assistant – MERN Stack",
-    period: "2025",
-    description:
-      "Developed a real-world AI-powered Smart Accounting Assistant using the MERN stack to automate business financial operations. The system includes transaction categorization, salary calculation, tax computation, invoicing, and AI-driven insights through Gemini API integration.",
-    tech: ["MERN Stack", "Node.js", "React", "Gemini API", "AI", "MongoDB"],
-    github: "", // Add if available
-    link: "",   // Add if available
-    image: "/images/smart-accounting.png"
-  },
-  {
-    title: "CashLeaf – Personal Finance Tracker",
-    period: "2025",
-    description:
-      "Created a Kotlin-based mobile app for daily income and expense tracking, budget management, and real-time visual analytics. Implemented SharedPreferences for local data persistence and intuitive UI components with Android Studio.",
-    tech: ["Kotlin", "Android Studio", "SharedPreferences", "Finance", "Mobile App"],
-    github: "", // Add if available
-    link: "",   // Add if available
-    image: "/images/cashleaf-app.png"
-  },
-  {
-    title: "PlanIt – Event Management System",
-    period: "2024",
-    description:
-      "Developed a full-stack event booking web application with role-based access control, dynamic event listings, booking and payment management, and comprehensive admin dashboard. Built using MVC architecture with OOP principles and complete CRUD operations. Features responsive UI design with HTML, CSS, JavaScript, and Bootstrap.",
-    tech: ["Java Servlets", "JSP", "JDBC", "MySQL", "MVC", "Bootstrap", "HTML", "CSS", "JavaScript"],
-    github: "", // Add if available
-    link: "",   // Add if available
-    image: "/images/planit-event.png"
-  },
-  {
-    title: "Movie Booking System",
-    period: "2024",
-    description:
-      "Engineered a web-based movie reservation platform with full CRUD operations, integrated payment module, and a contact form. Built using HTML, CSS, PHP, and MySQL with a focus on responsive UI and secure backend.",
-    tech: ["HTML", "CSS", "PHP", "MySQL", "CRUD", "Web App"],
-    github: "", // Add if available
-    link: "",   // Add if available
-    image: "/images/movie-booking.png"
-  },
-  {
-    title: "Aara Cakes – Online Cake Ordering App (UI/UX Prototype)",
-    period: "2025",
-    description:
-      "Created a comprehensive mobile app UI/UX prototype in Figma for an online cake ordering platform. Designed user-centered interfaces for cake browsing, customization, order tracking, secure payment flows, and promotional features. Includes complete user journey mockups from product discovery to order completion with intuitive navigation and modern design principles.",
-    tech: ["Mobile App", "Figma", "UI/UX Design", "Mobile Prototyping", "User Research", "Wireframing", "Design Systems"],
-    github: "", // Design prototype - no code repository
-    link: "",   // Could add Figma prototype link if available
-    image: "/images/aara-cakes-ui.png"
-  },
-  {
-    title: "Nithuja Cakes Portfolio Website",
-    period: "2025",
-    description:
-      "Developed a modern portfolio site for a home-based cake business using React and Tailwind CSS. Features include a custom order form, WhatsApp ordering integration, and a photo gallery to showcase cake designs.",
-    tech: ["React", "Tailwind CSS", "WhatsApp API", "Portfolio"],
-    github: "", // Add if available
-    link: "",   // Add if available
-    image: "/images/nithuja-cakes.png"
-  },
-  {
-    title: "Saloon Perfect – Beauty Salon Portfolio Website",
-    period: "2024",
-    description:
-      "Built a responsive website for Saloon Perfect to showcase services, customer reviews, and gallery. Ensured clean layout, booking options, and mobile-first optimization for a smooth browsing experience.",
-    tech: ["HTML", "CSS", "Responsive Web", "Salon Website"],
-    github: "", // Optional
-    link: "https://salonperfect.lk/index.html",
-    image: "/images/saloon-perfect.png"
-  }
-];
-
 
 export default React.memo(Projects);
